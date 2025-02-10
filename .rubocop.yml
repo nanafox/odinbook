@@ -1,4 +1,7 @@
 # Omakase Ruby styling for Rails
+inherit_from:
+  - https://raw.githubusercontent.com/nanafox/rubocop-config/refs/heads/main/.rubocop.yml
+
 inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
 # Overwrite or add rules to create your own house style

@@ -1,0 +1,10 @@
+freddie_avatar:
+  name: avatar
+  record: one (Profile)
+  blob: freddie_avatar_blob
+
+brian_avatar:
+  name: avatar
+  record: two (Profile)
+  blob: brian_avatar_blob
+

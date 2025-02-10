@@ -38,7 +38,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -73,3 +73,5 @@ gem "bcrypt", "~> 3.1"
 gem "tilt", "~> 2.4"
 
 gem "annotated", "~> 0.1.1", group: :development
+
+gem "action_policy", "~> 0.7.3"

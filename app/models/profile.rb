@@ -17,4 +17,12 @@
 #
 class Profile < ApplicationRecord
   belongs_to :user
+  has_one_attached :avatar
+
+  validates :name, :username, :bio, presence: true
+  validates :user_id, uniqueness: { message: "profile exists already" }
+
+  def to_param
+    username
+  end
 end

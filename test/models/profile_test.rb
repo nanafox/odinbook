@@ -28,7 +28,7 @@ class ProfileTest < ActiveSupport::TestCase
   test "should fail when another profile creation is attempted for same user" do
     user = users(:one)
 
-    assert_raises ActiveRecord::RecordNotUnique do
+    assert_raises ActiveRecord::RecordInvalid do
       Profile.create!(user: user, name: "Manny Poo", bio: "Hello world")
     end
   end
