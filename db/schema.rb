@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_10_094204) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_10_132005) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.string "username"
+    t.string "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
+    t.index ["username"], name: "index_profiles_on_username", unique: true
+  end
 
   create_table "user_login_change_keys", force: :cascade do |t|
     t.string "key", null: false
@@ -41,13 +52,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_10_094204) do
   create_table "users", force: :cascade do |t|
     t.integer "status", default: 1, null: false
     t.citext "email", null: false
-    t.string "username"
     t.string "password_hash"
     t.index ["email"], name: "index_users_on_email", unique: true, where: "(status = ANY (ARRAY[1, 2]))"
-    t.index ["username"], name: "index_users_on_username", unique: true
     t.check_constraint "email ~ '^[^,;@ \r\n]+@[^,@; \r\n]+.[^,@; \r\n]+$'::citext", name: "valid_email"
   end
 
+  add_foreign_key "profiles", "users"
   add_foreign_key "user_login_change_keys", "users", column: "id"
   add_foreign_key "user_password_reset_keys", "users", column: "id"
   add_foreign_key "user_remember_keys", "users", column: "id"

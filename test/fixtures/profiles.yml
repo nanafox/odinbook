@@ -1,0 +1,31 @@
+# == Schema Information
+#
+# Table name: profiles
+#
+#  id         :bigint           not null, primary key
+#  user_id    :bigint           not null
+#  name       :string
+#  username   :string
+#  bio        :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_profiles_on_user_id   (user_id) UNIQUE
+#  index_profiles_on_username  (username) UNIQUE
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  username: freddie
+  name: Freddie Doe
+  bio: Hi, I'm Freddie Doe, I enjoy working on computer systems.
+
+two:
+  user: two
+  username: brian
+  name: Brian Kush
+  bio: I am the one you when scalability is of the essence.

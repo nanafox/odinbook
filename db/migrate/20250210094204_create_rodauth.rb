@@ -8,7 +8,6 @@ class CreateRodauth < ActiveRecord::Migration[8.0]
       t.check_constraint "email ~ '^[^,;@ \r\n]+@[^,@; \r\n]+\.[^,@; \r\n]+$'",
         name: "valid_email"
       t.index :email, unique: true, where: "status IN (1, 2)"
-      t.string :username, index: { unique: true }
       t.string :password_hash
     end
 
