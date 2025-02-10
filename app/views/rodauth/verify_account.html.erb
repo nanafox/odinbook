@@ -1,0 +1,103 @@
+<div class="min-h-screen flex">
+  <!-- Left side - Hero Image -->
+  <%= render "shared/left_side" %>
+  <!-- Right side - Verify Account Section -->
+  <div class="w-full md:w-1/2 flex flex-col p-8 md:p-12 justify-center">
+    <div class="max-w-md w-full mx-auto space-y-8">
+      <!-- Logo -->
+      <%= render "shared/logo" %>
+      <!-- Heading -->
+      <h1 class="text-3xl font-bold">
+        Verify Your Account
+      </h1>
+
+      <p class="text-sm text-gray-600">
+        Complete your account setup by verifying your email and setting a
+        password if required.
+      </p>
+
+      <%= form_with url: rodauth.verify_account_path, method: :post, data: { turbo: false }, class: "space-y-6" do |form| %>
+        <% if rodauth.verify_account_set_password? %>
+          <div>
+            <%= form.label "password",
+                       rodauth.password_label,
+                       class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= form.password_field rodauth.password_param,
+                                value: "",
+                                id: "password",
+                                autocomplete: rodauth.password_field_autocomplete_value,
+                                required: true,
+                                class:
+                                  "w-full px-4 py-2 border rounded-lg focus:ring-2 #{rodauth.field_error(rodauth.password_param) ? "border-red-600 focus:ring-red-600" : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"}",
+                                aria:
+                                  (
+                                    if rodauth.field_error(rodauth.password_param)
+                                      {
+                                        invalid: true,
+                                        describedby: "password_error_message",
+                                      }
+                                    else
+                                      {}
+                                    end
+                                  ) %>
+            <%= if rodauth.field_error(rodauth.password_param)
+              content_tag(
+                :span,
+                rodauth.field_error(rodauth.password_param),
+                class: "block mt-1 text-red-600 text-xs",
+                id: "password_error_message",
+              )
+            end %>
+          </div>
+
+          <% if rodauth.require_password_confirmation? %>
+            <div>
+              <%= form.label "password-confirm",
+                         rodauth.password_confirm_label,
+                         class: "block text-sm font-medium text-gray-700 mb-1" %>
+              <%= form.password_field rodauth.password_confirm_param,
+                                  value: "",
+                                  id: "password-confirm",
+                                  autocomplete: "new-password",
+                                  required: true,
+                                  class:
+                                    "w-full px-4 py-2 border rounded-lg focus:ring-2 #{rodauth.field_error(rodauth.password_confirm_param) ? "border-red-600 focus:ring-red-600" : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"}",
+                                  aria:
+                                    (
+                                      if rodauth.field_error(rodauth.password_confirm_param)
+                                        {
+                                          invalid: true,
+                                          describedby: "password-confirm_error_message",
+                                        }
+                                      else
+                                        {}
+                                      end
+                                    ) %>
+              <%= if rodauth.field_error(rodauth.password_confirm_param)
+                content_tag(
+                  :span,
+                  rodauth.field_error(rodauth.password_confirm_param),
+                  class: "block mt-1 text-red-600 text-xs",
+                  id: "password-confirm_error_message",
+                )
+              end %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= form.submit rodauth.verify_account_button,
+                    class:
+                      "w-full bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors" %>
+      <% end %>
+
+      <div class="mt-4 text-center">
+        <a
+          href="<%= rodauth.login_path %>"
+          class="text-sm text-blue-500 hover:text-blue-600"
+        >
+          Back to login
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

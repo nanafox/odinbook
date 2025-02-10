@@ -1,0 +1,30 @@
+<div class="min-h-screen flex items-center justify-center px-4">
+  <div class="w-full max-w-sm space-y-6">
+    <!-- Heading -->
+    <h1 class="text-2xl font-bold text-center">Log Out</h1>
+
+    <%= form_with url: rodauth.logout_path, method: :post, data: { turbo: false }, class: "space-y-4" do |form| %>
+      <% if rodauth.features.include?(:active_sessions) %>
+        <div class="flex items-center space-x-2">
+          <%= form.check_box rodauth.global_logout_param,
+                         id: "global-logout",
+                         class:
+                           "rounded border-gray-300 text-blue-600 focus:ring-blue-500" %>
+          <%= form.label "global-logout",
+                     rodauth.global_logout_label,
+                     class: "text-sm text-gray-700" %>
+        </div>
+      <% end %>
+
+      <%= form.submit rodauth.logout_button,
+                  class:
+                    "w-full bg-yellow-300 text-gray-900 px-6 py-2 rounded-md font-semibold hover:bg-yellow-400 transition-colors focus:ring-2 focus:ring-yellow-300 focus:outline-none" %>
+    <% end %>
+    <!-- Back to Dashboard -->
+    <div class="text-center">
+      <a href="/" class="text-sm text-blue-600 hover:text-blue-700">
+        Back to Dashboard
+      </a>
+    </div>
+  </div>
+</div>
