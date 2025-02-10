@@ -72,4 +72,4 @@ gem "bcrypt", "~> 3.1"
 # Used by Rodauth for rendering built-in view and email templates
 gem "tilt", "~> 2.4"
 
-gem "annotate", "~> 2.6", :group => :development
+gem "annotated", "~> 0.1.1", group: :development
