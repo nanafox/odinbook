@@ -4,19 +4,20 @@ class ProfilesController < ApplicationController
   before_action :authenticate
   before_action :set_profile, only: [ :show, :edit, :update ]
 
-
   def new
     @profile = Profile.new(user: current_user)
+    authorize! @profile
   end
 
   def create
     @profile = Profile.new(profile_params)
+    authorize! @profile
 
     if @profile.save
       redirect_to root_path, notice: "Welcome, your profile is complete"
     else
-      flash.now[:alert] = "Profile could not be completed succesfully"
-      render :new, status: :unprocessable_entity
+      flash.now[:alert] = "Profile update failed"
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -29,10 +30,10 @@ class ProfilesController < ApplicationController
   def update
     if @profile.update(profile_params)
       redirect_to current_user_profile_path,
-        notice: "Profile updated succesfully"
+                  notice: "Profile updated successfully"
     else
       flash.now[:alert] = "Failed to update profile"
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -49,5 +50,6 @@ class ProfilesController < ApplicationController
 
     def set_profile
       @profile = Profile.find_by(username: params[:username])
+      authorize! @profile
     end
 end
