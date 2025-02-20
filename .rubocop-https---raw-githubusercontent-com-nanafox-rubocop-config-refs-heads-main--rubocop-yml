@@ -228,7 +228,7 @@ Layout/LineLength:
     - db/schema.rb
 
 Style/Documentation:
-  Enabled: true
+  Enabled: false
   Exclude:
     - db/migrate/**
     - config/**/**
