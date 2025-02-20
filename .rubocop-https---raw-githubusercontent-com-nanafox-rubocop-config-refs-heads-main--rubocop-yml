@@ -226,10 +226,9 @@ Layout/LineLength:
     - app/controllers/application_controller.rb
     - db/seeds.rb
     - db/schema.rb
-    - app/misc/**
 
 Style/Documentation:
-  Enabled: false
+  Enabled: true
   Exclude:
     - db/migrate/**
     - config/**/**
@@ -237,7 +236,6 @@ Style/Documentation:
     - app/mailers/application_mailer.rb
     - app/controllers/application_controller.rb
     - app/helpers/application_helper.rb
-    - app/misc/**
 
 Lint/UselessAssignment:
   Enabled: true
