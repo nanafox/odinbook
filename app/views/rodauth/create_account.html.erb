@@ -14,11 +14,9 @@
       <div class="space-y-4">
         <%= render "shared/omniauth_buttons", type: "signup" %>
         <!-- Rodauth Signup Form -->
-        <%= form_with url: rodauth.create_account_path, method: :post, data: { turbo: false }, class: "space-y-4" do |form| %>
+        <%= form_with url: rodauth.create_account_path, method: :post, data: { turbo: false, controller: "password-visibility" }, class: "space-y-4" do |form| %>
           <div>
-            <%= form.label "login",
-                       rodauth.login_label,
-                       class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= form.label "login", rodauth.login_label, class: "block text-sm font-medium mb-1" %>
             <%= form.email_field rodauth.login_param,
                              value: params[rodauth.login_param],
                              id: "login",
@@ -49,7 +47,7 @@
             <div>
               <%= form.label "login-confirm",
                          rodauth.login_confirm_label,
-                         class: "block text-sm font-medium text-gray-700 mb-1" %>
+                         class: "block text-sm font-medium mb-1" %>
               <%= form.email_field rodauth.login_confirm_param,
                                value: params[rodauth.login_confirm_param],
                                id: "login-confirm",
@@ -84,8 +82,11 @@
             <div>
               <%= form.label "password",
                          rodauth.password_label,
-                         class: "block text-sm font-medium text-gray-700 mb-1" %>
+                         class: "block text-sm font-medium mb-1" %>
               <%= form.password_field rodauth.password_param,
+                                  data: {
+                                    password_visibility_target: "password",
+                                  },
                                   value: "",
                                   id: "password",
                                   autocomplete: rodauth.password_field_autocomplete_value,
@@ -117,8 +118,11 @@
               <div>
                 <%= form.label "password-confirm",
                            rodauth.password_confirm_label,
-                           class: "block text-sm font-medium text-gray-700 mb-1" %>
+                           class: "block text-sm font-medium mb-1" %>
                 <%= form.password_field rodauth.password_confirm_param,
+                                    data: {
+                                      password_visibility_target: "password",
+                                    },
                                     value: "",
                                     id: "password-confirm",
                                     autocomplete: "new-password",
@@ -147,6 +151,8 @@
               </div>
             <% end %>
           <% end %>
+
+          <%= render "show_password" %>
 
           <%= form.submit rodauth.create_account_button,
                       class:
