@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= content_for(:title) || "OdinBook" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,7 +22,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class=" bg-black text-white h-screen ">
+    <main class="mx-auto">
+      <%= yield %>
+    </main>
   </body>
 </html>
