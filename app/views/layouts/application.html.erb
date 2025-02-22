@@ -22,9 +22,19 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class=" bg-black text-white h-screen ">
-    <main class="mx-auto">
-      <%= yield %>
-    </main>
+  <body class="bg-black text-white h-full w-full">
+    <% if rodauth.logged_in? %>
+      <main class="container">
+        <%= render "shared/page_sidebar" %>
+        <section class="content-section border-gray-500 border-l border-r">
+          <%= yield %>
+        </section>
+        <%= render "shared/right_sidebar" %>
+      </main>
+    <% else %>
+      <main>
+        <%= yield %>
+      </main>
+    <% end %>
   </body>
 </html>
