@@ -1,44 +1,48 @@
-<div class="flex min-h-screen">
-  <%= render "shared/page_sidebar" %>
-  <!-- Profile Content -->
-  <main class="w-3/4 p-6">
-    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
+<!-- Profile Content -->
+<section id="<%= dom_id(profile) %>" class="content-section">
+  <div class="shadow-lg rounded-lg p-6">
+    <div class="flex justify-between flex-wrap">
       <!-- Avatar -->
       <div class="flex items-center space-x-4">
-        <img
-          src="<%= rails_storage_proxy_path(profile.avatar) %>"
-          alt="User Avatar"
-          class="w-20 h-20 rounded-full"
-        >
+        <% if profile.avatar.attached? %>
+          <img
+            src="<%= rails_storage_proxy_path(profile.avatar) %>"
+            alt="User Avatar"
+            class="w-20 h-20 rounded-full"
+          >
+        <% else %>
+          <span class="rounded-full border border-amber-50 p-8 md:p-4"><%= profile.name.first %></span>
+
+        <% end %>
         <div>
-          <h1 class="text-2xl font-bold text-gray-900"><%= profile.name %></h1>
-          <p class="text-gray-500">@<%= profile.username %></p>
+          <h1 class="text-2xl font-bold"><%= profile.name %></h1>
+          <p class="text-gray-200">@<%= profile.username %></p>
         </div>
       </div>
-      <!-- Bio -->
-      <p class="mt-4 text-gray-700"><%= profile.bio %></p>
       <!-- Edit Profile Button -->
       <div class="mt-4">
         <% if allowed_to?(:edit?, profile) %>
           <%= link_to "Edit Profile",
           edit_profile_path(profile),
-          class: "px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" %>
+          class: "px-4 py-2 bg-transparent border rounded-full hover:bg-neutral-900" %>
         <% end %>
       </div>
-      <!-- User Posts -->
-      <div class="mt-6 border-t pt-4">
-        <h2 class="text-xl font-semibold text-gray-800">Recent Posts</h2>
-        <div class="mt-4 space-y-4">
-          <div class="p-4 bg-gray-50 rounded-lg shadow">
-            <p class="text-gray-800">This is a sample post. Excited to share more thoughts here!</p>
-            <span class="text-sm text-gray-500">Posted 2 hours ago</span>
-          </div>
-          <div class="p-4 bg-gray-50 rounded-lg shadow">
-            <p class="text-gray-800">Learning Rails has been an amazing journey so far! 🚀</p>
-            <span class="text-sm text-gray-500">Posted 1 day ago</span>
-          </div>
+    </div>
+    <!-- Bio -->
+    <p class="mt-4"><%= profile.bio %></p>
+    <!-- User Posts -->
+    <div class="mt-6 border-t border-gray-500 pt-4">
+      <h2 class="text-xl font-semibold text-gray-200">Recent Posts</h2>
+      <div class="mt-4 space-y-4">
+        <div class="p-4 bg-gray-50 rounded-lg shadow">
+          <p class="text-gray-800">This is a sample post. Excited to share more thoughts here!</p>
+          <span class="text-sm text-gray-500">Posted 2 hours ago</span>
+        </div>
+        <div class="p-4 bg-gray-50 rounded-lg shadow">
+          <p class="text-gray-800">Learning Rails has been an amazing journey so far! 🚀</p>
+          <span class="text-sm text-gray-500">Posted 1 day ago</span>
         </div>
       </div>
     </div>
-  </main>
-</div>
+  </div>
+</section>
