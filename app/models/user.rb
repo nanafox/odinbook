@@ -16,4 +16,13 @@ class User < ApplicationRecord
   enum :status, unverified: 1, verified: 2, closed: 3
 
   has_one :profile
+  has_many :posts
+
+  def name
+    profile.name
+  end
+
+  def avatar
+    profile.avatar
+  end
 end

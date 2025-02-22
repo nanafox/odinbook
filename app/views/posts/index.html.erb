@@ -1,0 +1,54 @@
+<% content_for :title, make_title("Home") %>
+
+<div class="max-w-xl mx-auto">
+  <% if notice.present? %>
+    <div class="fixed top-4 right-4 z-50">
+      <div class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg" id="notice">
+        <%= notice %>
+      </div>
+    </div>
+  <% end %>
+  <!-- Header -->
+  <div
+    class="
+      sticky top-0 z-40 bg-black bg-opacity-80 backdrop-blur-sm border-b
+      border-gray-800 p-4
+    "
+  >
+    <div class="flex justify-between items-center">
+      <h1 class="font-bold text-xl text-white">Home</h1>
+      <button
+        type="button"
+        class="rounded-full p-2 hover:bg-blue-500/10 transition-colors"
+        title="Create a new post"
+      >
+        <svg
+          class="w-6 h-6 text-blue-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 4v16m8-8H4"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- New Post -->
+  <%= turbo_frame_tag Post.new, src: new_post_path %>
+  <!-- Posts Feed -->
+  <%= turbo_frame_tag "posts" do %>
+    <% if @posts.any? %>
+      <%= render @posts %>
+    <% else %>
+      <div class="p-8 text-center text-gray-500">
+        <p class="text-lg">No posts yet</p>
+        <p class="mt-2">Be the first one to post something!</p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

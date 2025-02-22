@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   get "landing_page/index"
 
   get "/profile", to: "profiles#me", as: :current_user_profile

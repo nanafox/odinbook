@@ -1,0 +1,5 @@
+<% if Post.count == 1 %>
+  <%= turbo_stream.update "posts", @post %>
+<% else %>
+  <%= turbo_stream.prepend "posts", @post %>
+<% end %>
