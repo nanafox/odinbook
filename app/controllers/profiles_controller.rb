@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [ :show, :edit, :update ]
 
   def new
-    @profile = Profile.new(user: current_user)
+    @profile = Profile.new
     authorize! @profile
   end
 
