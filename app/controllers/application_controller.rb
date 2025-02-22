@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     end
 
     def ensure_profile_complete
-      if current_user.profile.nil?
+      if current_user.profile.nil? && request.path != rodauth.logout_path
         redirect_to new_profile_path
       end
     end
