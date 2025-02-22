@@ -1,7 +1,7 @@
 .container {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-areas: "nav-sidebar" "content-section" "right-sidebar";
+  grid-template-areas: "nav-sidebar content-section right-sidebar";
   justify-content: center;
   margin: 0 auto;
 }
@@ -12,4 +12,8 @@
 
 .content-content {
   grid-area: content-area;
+}
+
+.right-sidebar {
+  grid-area: right-sidebar;
 }
