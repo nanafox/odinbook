@@ -11,8 +11,9 @@
             class="w-20 h-20 rounded-full"
           >
         <% else %>
-          <span class="rounded-full border border-amber-50 p-8 md:p-4"><%= profile.name.first %></span>
-
+          <span class="rounded-full border border-amber-50 p-8 md:p-4">
+            <%= profile.name.first %>
+          </span>
         <% end %>
         <div>
           <h1 class="text-2xl font-bold"><%= profile.name %></h1>
@@ -24,7 +25,8 @@
         <% if allowed_to?(:edit?, profile) %>
           <%= link_to "Edit Profile",
           edit_profile_path(profile),
-          class: "px-4 py-2 bg-transparent border rounded-full hover:bg-neutral-900" %>
+          class:
+            "px-4 py-2 bg-transparent border-2 border-gray-500 rounded-full hover:bg-neutral-900" %>
         <% end %>
       </div>
     </div>
