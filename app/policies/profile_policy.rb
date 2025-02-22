@@ -1,7 +1,11 @@
 # Policy for the profile actions
 class ProfilePolicy < ApplicationPolicy
   def new?
-    user.profile.nil?
+    user.profile.new_record?
+  end
+
+  def create?
+    new?
   end
 
   def show?
