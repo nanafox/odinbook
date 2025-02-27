@@ -14,6 +14,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new(author: current_user)
+    authorize! @post
   end
 
   # GET /posts/1/edit
@@ -23,6 +24,7 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
+    authorize! @post
 
     if @post.save
       respond_to do |format|
@@ -62,6 +64,7 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params.expect(:id))
+      authorize! @post
     end
 
     # Only allow a list of trusted parameters through.
