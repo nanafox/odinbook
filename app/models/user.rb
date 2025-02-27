@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :posts
+  has_many :likes, dependent: :destroy
 
   def name
     profile.name
@@ -24,5 +25,17 @@ class User < ApplicationRecord
 
   def avatar
     profile.avatar
+  end
+
+  def like(likeable)
+    likes.create(likeable: likeable) unless liked?(likeable)
+  end
+
+  def unlike(likeable)
+    likes.where(likeable: likeable).destroy_all if liked?(likeable)
+  end
+
+  def liked?(likeable)
+    likes.exists?(likeable: likeable)
   end
 end

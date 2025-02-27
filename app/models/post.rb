@@ -14,6 +14,15 @@
 #
 class Post < ApplicationRecord
   belongs_to :author, class_name: "User"
+  has_many :likes, as: :likeable, dependent: :destroy
 
   validates :content, presence: true
+
+  def likes_count
+    likes.count
+  end
+
+  def liked_by?(user)
+    likes.exists?(user: user)
+  end
 end

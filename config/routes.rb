@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    post "like", to: "likes#toggle", defaults: { format: :json }
+  end
+
   get "landing_page/index"
 
   get "/profile", to: "profiles#me", as: :current_user_profile
