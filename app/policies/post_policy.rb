@@ -18,4 +18,8 @@ class PostPolicy < ApplicationPolicy
   def destroy?
     owner?
   end
+
+  def show?
+    true
+  end
 end
