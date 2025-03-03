@@ -35,9 +35,22 @@ export default class extends Controller {
       });
   }
 
+  burstAnimation() {
+    this.iconTarget.classList.add("animate-burst");
+    setTimeout(() => {
+      this.iconTarget.classList.remove("animate-burst");
+    }, 500);
+  }
+
   // update the UI with the current likes count and fill hearts where needed
   updateUI() {
     this.iconTarget.setAttribute("fill", this.likedValue ? "red" : "none");
+    this.burstAnimation();
+    if (this.likedValue) {
+      this.iconTarget.classList.add("text-red-400");
+    } else {
+      this.iconTarget.classList.remove("text-red-400");
+    }
     this.countTarget.textContent = this.countValue;
   }
 }
