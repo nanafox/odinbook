@@ -1,0 +1,16 @@
+<div class="flex-shrink-0">
+  <%= link_to user.profile, data: {turbo_frame: "_top"} do %>
+    <% if user.avatar.attached? %>
+      <%= image_tag user.avatar, class: "w-10 h-10 rounded-full" %>
+    <% else %>
+      <div
+          class="
+                 w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white
+                 font-bold
+                 "
+          >
+          <%= user.name.split(" ").map { |n| n[0] }.join %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

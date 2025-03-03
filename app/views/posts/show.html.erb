@@ -1,5 +1,5 @@
 <% content_for :title,
-make_title("#{@post.author.name}: #{@post.content.truncate(100)}") %>
+  make_title("#{@post.author.name}: #{@post.content.truncate(100)}") %>
 
 <div class="flex justify-between">
   <div>
@@ -14,28 +14,11 @@ make_title("#{@post.author.name}: #{@post.content.truncate(100)}") %>
   <div class="p-4">
     <!-- Author section -->
     <div class="flex">
-      <div class="flex-shrink-0">
-        <% if @post.author.avatar.attached? %>
-          <%= image_tag @post.author.avatar, class: "w-10 h-10 rounded-full" %>
-        <% else %>
-          <div
-            class="
-              w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white
-              font-bold
-            "
-          >
-            <%= @post.author.name.split(" ").map { |n| n[0] }.join %>
-          </div>
-        <% end %>
-      </div>
+      <%= render "user_avatar", user: @post.author %>
 
       <div class="ml-3 flex-1">
-        <div class="flex items-center">
-          <h2 class="font-bold text-white"><%= @post.author.name %></h2>
-          <span class="ml-2 text-gray-500">·</span>
-          <span class="ml-2 text-gray-500"><%= time_ago_in_words(@post.created_at) %>
-            ago</span>
-        </div>
+        <!-- Post Author details and creation time -->
+        <%= render "post_details", post: @post %>
         <!-- Post content -->
         <div class="mt-2 text-white text-lg"><%= @post.content %></div>
         <!-- Post actions -->

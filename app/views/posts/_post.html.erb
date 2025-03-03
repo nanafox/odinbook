@@ -3,38 +3,18 @@
     class="p-4 hover:bg-gray-900/50 transition-colors border-b <%= border_separator_color %>">
     <div class="flex space-x-4">
       <!-- Author Avatar -->
-      <div class="flex-shrink-0">
-        <% if post.author.avatar.attached? %>
-          <%= image_tag post.author.avatar, class: "w-10 h-10 rounded-full" %>
-        <% else %>
-          <div
-            class="
-              w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white
-              font-bold
-            "
-          >
-            <%= post.author.name.split(" ").map { |n| n[0] }.join %>
-          </div>
-        <% end %>
-      </div>
+      <%= render "shared/user_avatar", user: post.author %>
 
       <!-- Post Content -->
       <div class="flex-1 min-w-0">
         <div class="flex justify-between items-center">
-          <div class="flex items-center text-sm">
-            <span class="font-bold text-white"><%= post.author.name %></span>
-            <span class="mx-1 text-gray-500">·</span>
-            <span class="text-gray-500">
-              <%= time_ago_in_words(post.created_at) %>
-              ago
-            </span>
-          </div>
-          <%= render "post_admin_actions", post: post %>
+          <%= render "shared/post_details", post: post %>
+          <%= render "shared/post_admin_actions", post: post %>
         </div>
 
         <div class="mt-2 text-white"><%= post.content %></div>
         <!-- Post Actions -->
-        <%= render "post_actions", post: post %>
+        <%= render "shared/post_actions", post: post %>
       </div>
     </div>
   </div>
