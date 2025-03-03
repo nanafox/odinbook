@@ -26,7 +26,7 @@
     <% if rodauth.logged_in? %>
       <main class="container">
         <%= render "shared/page_sidebar" %>
-        <section class="content-section border-gray-500 border-l border-r p-8">
+        <section class="content-section <%= border_separator_color %> border-l border-r p-8">
           <%= yield %>
         </section>
         <%= render "shared/right_sidebar" %>
