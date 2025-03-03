@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 
   before_action :authenticate
   before_action :set_profile, only: [ :show, :edit, :update ]
+  before_action :set_user_posts, only: [ :show, :me ]
 
   def new
     @profile = Profile.new
@@ -51,5 +52,9 @@ class ProfilesController < ApplicationController
     def set_profile
       @profile = Profile.find_by(username: params[:username])
       authorize! @profile
+    end
+
+    def set_user_posts
+      @posts = Post.for_user(@profile.user)
     end
 end

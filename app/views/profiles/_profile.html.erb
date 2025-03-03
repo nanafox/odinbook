@@ -34,17 +34,10 @@
     <p class="mt-4"><%= profile.bio %></p>
     <!-- User Posts -->
     <div class="mt-6 border-t border-gray-500 pt-4">
-      <h2 class="text-xl font-semibold text-gray-200">Recent Posts</h2>
-      <div class="mt-4 space-y-4">
-        <div class="p-4 bg-gray-50 rounded-lg shadow">
-          <p class="text-gray-800">This is a sample post. Excited to share more thoughts here!</p>
-          <span class="text-sm text-gray-500">Posted 2 hours ago</span>
-        </div>
-        <div class="p-4 bg-gray-50 rounded-lg shadow">
-          <p class="text-gray-800">Learning Rails has been an amazing journey so far! 🚀</p>
-          <span class="text-sm text-gray-500">Posted 1 day ago</span>
-        </div>
+      <div class="border-b <%= border_separator_color %> mb-2">
+        <h2 class="text-xl font-semibold text-gray-200">Recent Posts</h2>
       </div>
+      <%= render @posts %>
     </div>
   </div>
 </section>

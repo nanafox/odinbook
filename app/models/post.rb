@@ -25,4 +25,6 @@ class Post < ApplicationRecord
   def liked_by?(user)
     likes.exists?(user: user)
   end
+
+  scope :for_user, ->(user) { where(author: user) }
 end
