@@ -1,0 +1,7 @@
+one:
+  content: "Hello world"
+  author: one
+
+two:
+  content: "Post number 2"
+  author: two
