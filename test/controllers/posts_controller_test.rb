@@ -1,7 +1,11 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
+  include SignInHelper
+
   setup do
+    @author = users(:one)
+    sign_in(@author)
     @post = posts(:one)
   end
 
@@ -18,7 +22,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "should create post" do
     assert_difference("Post.count") do
       post posts_url,
-params: { post: { content: @post.content, user_id: @post.user_id } }
+           params: { post: { content: @post.content } }
     end
 
     assert_redirected_to post_url(Post.last)
@@ -36,8 +40,10 @@ params: { post: { content: @post.content, user_id: @post.user_id } }
 
   test "should update post" do
     patch post_url(@post),
-params: { post: { content: @post.content, user_id: @post.user_id } }
-    assert_redirected_to post_url(@post)
+          params: { post: { content: @post.content } }
+    # ensure that after update, all posts are shown and not redirected to only
+    # the edited post
+    assert_redirected_to posts_url
   end
 
   test "should destroy post" do
