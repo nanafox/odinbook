@@ -226,6 +226,7 @@ Layout/LineLength:
     - app/controllers/application_controller.rb
     - db/seeds.rb
     - db/schema.rb
+    - app/misc/**
 
 Style/Documentation:
   Enabled: false
