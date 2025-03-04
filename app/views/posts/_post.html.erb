@@ -1,17 +1,19 @@
 <%= turbo_frame_tag post do %>
   <div
-    class="p-4 hover:bg-gray-900/50 transition-colors border-b <%= border_separator_color %>">
+    class="
+      p-4 hover:bg-gray-900/50 transition-colors border-b
+      <%= border_separator_color %>
+    "
+  >
     <div class="flex space-x-4">
       <!-- Author Avatar -->
       <%= render "shared/user_avatar", user: post.author %>
-
       <!-- Post Content -->
       <div class="flex-1 min-w-0">
         <div class="flex justify-between items-center">
           <%= render "shared/post_details", post: post %>
           <%= render "shared/post_admin_actions", post: post %>
         </div>
-
         <div class="mt-2 text-white"><%= post.content %></div>
         <!-- Post Actions -->
         <%= render "shared/post_actions", post: post %>
