@@ -22,6 +22,10 @@ class LikesController < ApplicationController
   private
 
     def set_likeable
-      @likeable = params[:likeable_type].constantize.find(params[:likeable_id])
+      likeable_type = params[:likeable_type]
+      case likeable_type
+      when "Post"
+        @likeable = Post.find(params[:likeable_id])
+      end
     end
 end
