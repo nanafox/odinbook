@@ -1,28 +1,29 @@
 <% content_for :title,
-  make_title("#{@post.author.name}: #{@post.content.truncate(100)}") %>
+make_title("#{@post.author.name}: #{@post.content.truncate(100)}") %>
 
 <div class="flex justify-between">
   <div>
-    <%= link_to raw("&larr; Back"), posts_path, class: "text-gray-400 hover:text-white transition-colors" %>
+    <%= link_to raw("&larr; Back"),
+    posts_path,
+    class: "text-gray-400 hover:text-white transition-colors" %>
   </div>
-
   <!-- Admin actions -->
-  <%= render "post_admin_actions", post: @post %>
+  <%= render "shared/post_admin_actions", post: @post %>
 </div>
 
 <div class="max-w-xl w-full border-gray-800">
   <div class="p-4">
     <!-- Author section -->
     <div class="flex">
-      <%= render "user_avatar", user: @post.author %>
+      <%= render "shared/user_avatar", user: @post.author %>
 
       <div class="ml-3 flex-1">
         <!-- Post Author details and creation time -->
-        <%= render "post_details", post: @post %>
+        <%= render "shared/post_details", post: @post %>
         <!-- Post content -->
         <div class="mt-2 text-white text-lg"><%= @post.content %></div>
         <!-- Post actions -->
-        <%= render "post_actions", post: @post %>
+        <%= render "shared/post_actions", post: @post %>
       </div>
     </div>
   </div>
