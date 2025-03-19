@@ -64,7 +64,7 @@ end
 
 gem "letter_opener", group: :development
 
-gem "rodauth-rails", "~> 2.0"
+gem "rodauth-rails", "~> 2.1"
 # Enables Sequel to use Active Record's database connection
 gem "sequel-activerecord_connection", "~> 2.0"
 # Used by Rodauth for password hashing
