@@ -4,12 +4,12 @@
       <%= image_tag user.avatar, class: "w-10 h-10 rounded-full" %>
     <% else %>
       <div
-          class="
-                 w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white
-                 font-bold
-                 "
-          >
-          <%= user.name.split(" ").map { |n| n[0] }.join %>
+        class="
+          w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white
+          font-bold
+        "
+      >
+        <%= fallback_avatar_for(user) %>
       </div>
     <% end %>
   <% end %>
