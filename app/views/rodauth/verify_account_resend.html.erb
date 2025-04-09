@@ -5,16 +5,16 @@
   <div class="w-full md:w-1/2 flex flex-col p-8 md:p-12 justify-center">
     <div class="max-w-md w-full mx-auto space-y-8">
       <!-- Logo -->
-      <%= render "shared/logo" %>
+      <div class="text-center">
+        <%= render "shared/logo" %>
+      </div>
       <!-- Heading -->
-      <h1 class="text-3xl font-bold">
+      <h1 class="text-3xl font-bold text-center">
         Resend Verification Email
       </h1>
-
       <p class="text-sm text-gray-600">
         <%== rodauth.verify_account_resend_explanatory_text %>
       </p>
-
       <%= form_with url: rodauth.verify_account_resend_path, method: :post, data: { turbo: false }, class: "space-y-6" do |form| %>
         <% if params[rodauth.login_param] %>
           <%= form.hidden_field rodauth.login_param, value: params[rodauth.login_param] %>
@@ -46,20 +46,11 @@
             end %>
           </div>
         <% end %>
-
         <%= form.submit rodauth.verify_account_resend_button,
                     class:
                       "w-full bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors" %>
       <% end %>
-
-      <div class="mt-4 text-center">
-        <a
-          href="<%= rodauth.login_path %>"
-          class="text-sm text-blue-500 hover:text-blue-600"
-        >
-          Back to login
-        </a>
-      </div>
+      <%= render "back_to_login" %>
     </div>
   </div>
 </div>
