@@ -19,4 +19,8 @@ class ProfilePolicy < ApplicationPolicy
   def update?
     owner?
   end
+
+  def manage?
+    true
+  end
 end

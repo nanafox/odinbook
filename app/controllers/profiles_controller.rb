@@ -1,9 +1,9 @@
 class ProfilesController < ApplicationController
-  skip_before_action :ensure_profile_complete, only: [ :new, :create ]
+  skip_before_action :ensure_profile_complete, only: %i[new create]
 
   before_action :authenticate
-  before_action :set_profile, only: [ :show, :edit, :update ]
-  before_action :set_user_posts, only: [ :show, :me ]
+  before_action :set_profile, only: %i[show edit update me]
+  before_action :set_user_posts, only: %i[show me]
 
   def new
     @profile = Profile.new
@@ -45,12 +45,14 @@ class ProfilesController < ApplicationController
   private
 
     def profile_params
-      params.expect(profile: [ :name, :username, :bio, :avatar ])
-            .merge({ user: current_user })
+      params.expect(profile: %i[name username bio avatar]).merge(
+        { user: current_user }
+      )
     end
 
     def set_profile
-      @profile = Profile.find_by(username: params[:username])
+      @profile =
+        Profile.find_by(username: params[:username]) || current_user.profile
       authorize! @profile
     end
 
