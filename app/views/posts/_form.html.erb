@@ -18,7 +18,7 @@
               font-bold
             "
           >
-            <%= current_user.name.split(" ").map { |n| n[0] }.join %>
+            <%= fallback_avatar_for(current_user) %>
           </div>
         <% end %>
       </div>
