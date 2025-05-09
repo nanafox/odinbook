@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    action_policy (0.7.4)
+    action_policy (0.7.5)
       ruby-next-core (>= 1.0)
     actioncable (8.0.2)
       actionpack (= 8.0.2)
@@ -418,7 +418,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  action_policy (~> 0.7.3)
+  action_policy (~> 0.7.5)
   annotated (~> 0.1.1)
   bcrypt (~> 3.1)
   bootsnap

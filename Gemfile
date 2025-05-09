@@ -74,4 +74,4 @@ gem "tilt", "~> 2.4"
 
 gem "annotated", "~> 0.1.1", group: :development
 
-gem "action_policy", "~> 0.7.3"
+gem "action_policy", "~> 0.7.5"
