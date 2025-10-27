@@ -343,8 +343,8 @@ GEM
       websocket (~> 1.0)
     sequel (5.97.0)
       bigdecimal
-    sequel-activerecord_connection (2.0.0)
-      activerecord (>= 5.0, < 8.1)
+    sequel-activerecord_connection (2.0.1)
+      activerecord (>= 5.1)
       sequel (~> 5.38)
     solid_cable (3.0.12)
       actioncable (>= 7.2)
